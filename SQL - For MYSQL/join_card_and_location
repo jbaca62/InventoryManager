@@ -1,0 +1,3 @@
+SELECT Cards.CardId, Cards.CardName, Locations.LocationName
+FROM Cards
+INNER JOIN Locations ON Cards.CardId=Locations.LocationId;

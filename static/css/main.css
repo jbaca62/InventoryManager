@@ -1,0 +1,11 @@
+div.cardTag {
+  max-width: 500px;
+  margin: auto;
+  border: 2px solid #000000;
+}
+
+div.addCard{
+  max-width: 200px;
+  margin: auto;
+  border: 2px solid #000000;
+}

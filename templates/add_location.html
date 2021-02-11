@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Location</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/icons/favicon.ico')}}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+        href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+    <!--===============================================================================================-->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery-3.5.1.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!--===============================================================================================-->
+</head>
+<p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#folderInputGroup"
+        aria-expanded="false" aria-controls="folderInputGroup">Folder</button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#deckBoxInputGroup"
+        aria-expanded="false" aria-controls="deckBoxInputGroup">Deck Box</button>
+</p>
+<div class="col">
+    <div class="collapse show" id="folderInputGroup">
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#newPageInputGroup"
+                aria-expanded="false" aria-controls="newPageInputGroup">Add New Folder</button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#newFolderInputGroup"
+                aria-expanded="false" aria-controls="newFolderInputGroup">Add Pages To Folder</button>
+        </p>
+        <div class="col">
+            <div class="collapse show" id="newPageInputGroup">
+                <label>Folder To Add Pages To:</label>
+                <input type="text">
+                <label>Number of Pages:</label>
+                <input type="number">
+                <label>Double Sided Pages:</label>
+                <input type="checkbox">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="collapse" id="deckBoxInputGroup">
+        <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
+            anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var locationType = "Folder"
+    function myFunction() {
+        var tag = $('#cardTagInput').val();
+        $('#cardTagInput').val('');
+        $.post("add", { cardTag: tag }, function (data, status) {
+            var card = data;
+            console.log(card)
+            var table = document.getElementById("cardTable");
+            var row = table.insertRow(1);
+            var idCell = row.insertCell(0);
+            var nameCell = row.insertCell(1)
+            var tagCell = row.insertCell(2)
+            var quantityCell = row.insertCell(3)
+            var boxCell = row.insertCell(4)
+            var rarityCell = row.insertCell(5)
+            idCell.innerHTML = card.id
+            nameCell.innerHTML = card.name
+            tagCell.innerHTML = card.tag
+            quantityCell.innerHTML = card.quantity
+            boxCell.innerHTML = card["box name"]
+            rarityCell.innerHTML = card.rarity
+
+        });
+    }
+    $('#cardTagInput').keypress(function (e) {
+        if (e.which == 13) {
+            jQuery(this).blur();
+            jQuery('#addCardButton').focus().click();
+            jQuery('#cardTagInput').focus()
+        }
+    });
+</script>

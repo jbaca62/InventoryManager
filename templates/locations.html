@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cards</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/icons/favicon.ico')}}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+        href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+    <table class="table table-hover table-dark table-sm table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Card ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loc in locations %}
+            <tr>
+                <td>{{loc.id}}</td>
+                <td>{{loc.name}}</td>
+                <td>{{loc.cardId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</body>
+
+</html>
